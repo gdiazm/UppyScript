@@ -15,7 +15,7 @@ const uppy = new Uppy()
     })
     .use(AwsS3, {
         getUploadParameters (file) {
-            let url = 'https://mobile-api.hopper.com/api/v2/video/storage/upload/signed' // the environment will need to be passed as a parameter
+            let url = 'https://mobile-api.staging.hopper.com/api/v2/video/storage/upload/signed' // the environment will need to be passed as a parameter
 
             // 1st read the form fields via DOM
             // 2nd make sure mandatory fields are populated
