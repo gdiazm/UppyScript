@@ -59,7 +59,7 @@ uploadBtn.addEventListener('click', () => {
 
 
 uppy.on('file-added', (file) => {
-    const UppyInput = document.querySelector('.UppyInput')
+    const UppyInput = document.querySelector('.uppyinput')
 
     const paragraph = document.createElement("P");
     paragraph.className = 'UppyInputStatus';
