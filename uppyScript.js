@@ -56,3 +56,20 @@ const uploadBtn = document.querySelector('.submit-button')
 uploadBtn.addEventListener('click', () => {
     uppy.upload()
 })
+
+
+uppy.on('file-added', (file) => {
+    const UppyInput = document.querySelector('.UppyInput')
+
+    const paragraph = document.createElement("P");
+    paragraph.className = 'UppyInputStatus';
+
+    const text = document.createTextNode("Upload Successful");
+    paragraph.appendChild(text);
+
+    paragraph.style.color = '#60B955';
+    paragraph.style.fontFamily = 'Proxima nova, sans-serif'
+    paragraph.style.fontSize = '16px';
+
+    UppyInput.appendChild(paragraph);
+})
