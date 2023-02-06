@@ -89,3 +89,12 @@ uppy.on('file-added', (file) => {
 
     UppyInput.appendChild(paragraph);
 })
+
+uppy.on('upload-success', (file, response) => {
+    sendTrackingToNative(
+        {
+            event: "video_uploaded", 
+            properties: {}
+        }
+    )
+})
