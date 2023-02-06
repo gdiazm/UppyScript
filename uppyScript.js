@@ -27,7 +27,7 @@ const uppy = new Uppy()
 
             let requestBody = {
                 fileName: file.name,
-                emailAddress: 'test@hopper.com', // this will need to be read from the form
+                emailAddress: email,
                 fileSize: file.size
             }
 
