@@ -91,10 +91,6 @@ uppy.on('file-added', (file) => {
 })
 
 uppy.on('upload-success', (file, response) => {
-    sendTrackingToNative(
-        {
-            event: "video_uploaded", 
-            properties: {}
-        }
-    )
+    console.log('Video successfully uploaded. Logging event')
+    sendTrackingToNative({ "event": "video_uploaded", properties: {}})
 })
