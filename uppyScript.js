@@ -80,7 +80,7 @@ uppy.on('file-added', (file) => {
     const paragraph = document.createElement("P");
     paragraph.className = 'UppyInputStatus';
 
-    const text = document.createTextNode("Upload Successful");
+    const text = document.createTextNode("Your video has been uploaded successfully");
     paragraph.appendChild(text);
 
     paragraph.style.color = '#60B955';
