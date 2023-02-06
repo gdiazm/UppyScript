@@ -68,8 +68,8 @@ const uppy = new Uppy()
             })
         }
     });
-const uploadBtn = document.querySelector('.submit-button')
-uploadBtn.addEventListener('click', () => {
+const submitButton = document.querySelector('.submit-button')
+submitButton.addEventListener('click', () => {
     uppy.upload()
 })
 
@@ -87,7 +87,7 @@ uppy.on('file-added', (file) => {
     paragraph.style.fontFamily = 'Proxima nova, sans-serif'
     paragraph.style.fontSize = '16px';
 
-    UppyInput.appendChild(paragraph);
+    UppyInput.prepend(paragraph);
 })
 
 uppy.on('upload-success', (file, response) => {
