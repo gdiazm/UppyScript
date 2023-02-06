@@ -17,11 +17,11 @@ const uppy = new Uppy()
         getUploadParameters (file) {
             let url = 'https://mobile-api.staging.hopper.com/api/v2/video/storage/upload/signed' // the environment will need to be passed as a parameter
 
-            // 1st read the form fields via DOM
-            // 2nd make sure mandatory fields are populated
-            // 3rd validating the mandatory fields (maybe regex)
-            // If fields are valid -> include them in requestBody
-            // Else show error message on those fields that are invalid
+            let email = document.getElementById('email').value                     
+            let instagramHandle = document.getElementById('instagram_handle').value      
+            let tiktokHandle = document.getElementById('tiktok_username').value          
+            let destination = document.getElementById('travel_destination').value  
+            let hotel = document.getElementById('hotel_name').value                
 
             // validateFields();
 
@@ -30,6 +30,22 @@ const uppy = new Uppy()
                 emailAddress: 'test@hopper.com', // this will need to be read from the form
                 fileSize: file.size
             }
+
+             if (instagramHandle.length > 0) {                   
+                 requestBody.instagramUsername = instagramHandle 
+             }                                             
+
+             if (tiktokHandle.length > 0) {                      
+                 requestBody.tiktokUsername = tiktokHandle       
+             }                                             
+
+             if (destination.length > 0) {                 
+                 requestBody.destinationTag = destination  
+             }                                             
+
+             if (hotel.length > 0) {                       
+                 requestBody.hotelTag = hotel              
+             }                                             
 
             return fetch(url, {
                 method: 'POST',
