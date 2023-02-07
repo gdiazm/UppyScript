@@ -159,23 +159,27 @@ function showSubmitMessage(text, color) {
 function validateFields() {
     let name = document.getElementById('Name') // validate
     let email = document.getElementById('email') // validate
+    let isValid = true
     
     console.log(`Name: ${name.value}`)
     console.log(`Email: ${email.value}`)
     
     if (!name.value.length > 0) {
         name.setCustomValidity("Input your first and last name");
+        isValid = false
     } else {
         name.setCustomValidity("");
     }
     if (!email.value.length > 0) {
         email.setCustomValidity("Input your email");
+        isValid = false
     } else if (email.validity.typeMismatch) {
         email.setCustomValidity("Input a valid email");
+        isValid = false
     } else{
         email.setCustomValidity("");
     }
-    
-    return name.reportValidity() && email.reportValidity();
+    return isValid
+//     return name.reportValidity() && email.reportValidity();
 }
 
