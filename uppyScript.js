@@ -98,5 +98,5 @@ uppy.on('file-added', (file) => {
 
 uppy.on('upload-success', (file, response) => {
     sendTrackingToNative({ "event": "video_uploaded", properties: {}});
-    window.open("/submission-page");
+    window.location.replace('https://hopper-creators-landing-page.webflow.io/submission-page');
 })
