@@ -121,14 +121,19 @@ function showUploadMessage(text, color) {
 }                                                              
 
 function validateFields() {
-    let name = document.getElementById('Name').value // validate
-    let email = document.getElementById('email').value // validate
+    let name = document.getElementById('Name') // validate
+    let email = document.getElementById('email') // validate
     let valid = true
+    
+    if (!email.value.length > 0) {
+        name.setCustomValidity("Input your email!");
+        valid = false;
+    }
     if (email.validity.typeMismatch) {
         email.setCustomValidity("I am expecting an email address!");
         valid = false;
       }
-    if (!name.length > 0) {
+    if (!name.value.length > 0) {
         name.setCustomValidity("Input your name!");
         valid = false;
     }
