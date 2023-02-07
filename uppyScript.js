@@ -3,7 +3,7 @@ import { Uppy, FileInput, StatusBar, AwsS3 } from "https://releases.transloadit.
     restrictions: {
         maxNumberOfFiles: 1,
         allowedFileTypes: ['.mp4', '.mov', '.qt', '.m4v', '.mpg', '.mpeg', '.mp2', '.avi', '.3gp', '.3g2', '.mkv', '.webm', '.wmv']
-    }
+    },
     onBeforeFileAdded: (currentFile) => {                                            
       const extension = `.${currentFile.name.split('.').pop()}`;                   
       const isAllowedExtension = videoFileTypes.includes(extension)                
