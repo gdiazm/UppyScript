@@ -81,7 +81,7 @@ submitButton.addEventListener('click', () => {
     } else {
         if (uppy.getFiles().length < 1) {
           console.log('No files were found');
-          showSubmitMessage("Please upload a video", '#FF0000');
+          showSubmitMessage("Submission failure. Please upload a video.", '#FF0000');
         } else {
           uppy.upload()
         }
@@ -146,9 +146,8 @@ function showSubmitMessage(text, color) {
    paragraph.style.color = color;
    paragraph.style.fontFamily = 'Proxima nova, sans-serif';
    paragraph.style.fontSize = '16px';
-   paragraph.style.paddingTop = '32px';
    paragraph.style.paddingLeft = '8px';
-   paragraph.style.marginBottom = '-16px';
+   paragraph.style.marginBottom = '0px';
 
    UppyInputProgress.prepend(paragraph);
  } else {
