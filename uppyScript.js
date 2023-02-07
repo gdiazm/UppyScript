@@ -3,18 +3,21 @@ import { Uppy, FileInput, StatusBar, AwsS3 } from "https://releases.transloadit.
     restrictions: {
         maxNumberOfFiles: 1,
         allowedFileTypes: ['.mp4', '.mov', '.qt', '.m4v', '.mpg', '.mpeg', '.mp2', '.avi', '.3gp', '.3g2', '.mkv', '.webm', '.wmv']
-    }
-//     onBeforeFileAdded: (currentFile) => {                                            
-//       const extension = `.${currentFile.name.split('.').pop()}`;                   
-//       const isAllowedExtension = videoFileTypes.includes(extension)                
-
-//       if (!isAllowedExtension) {                                                   
-//         showUploadMessage("Upload unsuccessful (use .mp4 or .mov).", '#FF0000')    
-//         return false                                                               
-//       } else {                                                                     
-//         return true                                                                
-//       }                                                                            
-//   }                                                                                
+    },
+    onBeforeFileAdded: (currentFile) => {                                            
+      const extension = `.${currentFile.name.split('.').pop().toLowerCase()}`;                   
+      const isAllowedExtension = videoFileTypes.includes(extension)                
+      
+      console.log(`extension: ${extension}`)
+      console.log(`is allowed extension: ${isAllowedExtension}`)
+  
+      if (!isAllowedExtension) {                                                   
+        showUploadMessage("Upload unsuccessful (use .mp4 or .mov).", '#FF0000')    
+        return false                                                               
+      } else {                                                                     
+        return true                                                                
+      }                                                                            
+  }                                                                                
 })
 
     .use(FileInput, {
@@ -96,9 +99,6 @@ submitButton.addEventListener('click', () => {
 
 
 uppy.on('file-added', (file) => {
-  const extension = `.${file.name.split('.').pop()}`;
-  console.log(`extension: ${extension}`)
- 
   showUploadMessage("Your video has been uploaded successfully.", '#60B955')  
 })
 
