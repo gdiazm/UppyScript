@@ -3,18 +3,18 @@ import { Uppy, FileInput, StatusBar, AwsS3 } from "https://releases.transloadit.
     restrictions: {
         maxNumberOfFiles: 1,
         allowedFileTypes: ['.mp4', '.mov', '.qt', '.m4v', '.mpg', '.mpeg', '.mp2', '.avi', '.3gp', '.3g2', '.mkv', '.webm', '.wmv']
-    },
-    onBeforeFileAdded: (currentFile) => {                                            
-      const extension = `.${currentFile.name.split('.').pop()}`;                   
-      const isAllowedExtension = videoFileTypes.includes(extension)                
+    }
+//     onBeforeFileAdded: (currentFile) => {                                            
+//       const extension = `.${currentFile.name.split('.').pop()}`;                   
+//       const isAllowedExtension = videoFileTypes.includes(extension)                
 
-      if (!isAllowedExtension) {                                                   
-        showUploadMessage("Upload unsuccessful (use .mp4 or .mov).", '#FF0000')    
-        return false                                                               
-      } else {                                                                     
-        return true                                                                
-      }                                                                            
-  }                                                                                
+//       if (!isAllowedExtension) {                                                   
+//         showUploadMessage("Upload unsuccessful (use .mp4 or .mov).", '#FF0000')    
+//         return false                                                               
+//       } else {                                                                     
+//         return true                                                                
+//       }                                                                            
+//   }                                                                                
 })
 
     .use(FileInput, {
@@ -87,7 +87,11 @@ import { Uppy, FileInput, StatusBar, AwsS3 } from "https://releases.transloadit.
     });
 const submitButton = document.querySelector('.submit-button')
 submitButton.addEventListener('click', () => {
-    uppy.upload();
+    if (!validateFields()) {
+        // do not upload
+    } else {
+        uppy.upload()
+    }
 })
 
 
@@ -115,4 +119,19 @@ function showUploadMessage(text, color) {
                                                                
      UppyInput.prepend(paragraph);                             
 }                                                              
+
+function validateFields() {
+    let name = document.getElementById('Name') // validate
+    let email = document.getElementById('email') // validate
+    let valid = true
+    if (email.validity.typeMismatch) {
+        email.setCustomValidity("I am expecting an email address!");
+        valid = false;
+      }
+    if (!name.length > 0) {
+        name.setCustomValidity("Input your name!");
+        valid = false;
+    }
+    return valid;
+}
 
