@@ -78,9 +78,13 @@ const videoFileTypes = ['.mp4', '.mov', '.qt', '.m4v', '.mpg', '.mpeg', '.mp2', 
 const submitButton = document.querySelector('.submit-button')
 submitButton.addEventListener('click', () => {
     if (!validateFields()) {
-        // do not upload
+      // Do not upload
     } else {
-        uppy.upload()
+        if (uppy.getFiles().length < 1) {
+          console.log('No files were found');
+        } else {
+          uppy.upload()
+        }
     }
 })
 
@@ -134,14 +138,14 @@ function validateFields() {
     console.log(`Email: ${email.value}`)
     
     if (!name.value.length > 0) {
-        name.setCustomValidity("Input your name!");
+        name.setCustomValidity("Input your first and last name");
     } else {
         name.setCustomValidity("");
     }
     if (!email.value.length > 0) {
-        email.setCustomValidity("Input your email!");
+        email.setCustomValidity("Input your email");
     } else if (email.validity.typeMismatch) {
-        email.setCustomValidity("I am expecting an email address!");
+        email.setCustomValidity("Input a valid email");
     } else{
         email.setCustomValidity("");
     }
