@@ -85,7 +85,16 @@ submitButton.addEventListener('click', () => {
 
 
 uppy.on('file-added', (file) => {
-  showUploadMessage("Your video has been uploaded successfully.", '#60B955')  
+     const extension = `.${file.name.split('.').pop().toLowerCase()}`;
+     console.log(`extension: ${extension}`)
+     const isAllowedExtension = videoFileTypes.includes(extension)
+     console.log(`is allowed extension: ${isAllowedExtension}`)
+     if (isAllowedExtension) {
+        showUploadMessage("Your video has been uploaded successfully.", '#60B955')
+     } else {
+        uppy.removeFile(file.id)
+        showUploadMessage("Upload unsuccessful (use .mp4 or .mov).", '#FF0000')
+     }
 })
 
 uppy.on('upload-success', (file, response) => {
@@ -93,21 +102,28 @@ uppy.on('upload-success', (file, response) => {
     window.location.replace('https://hopper-creators-landing-page.webflow.io/submission-page');
 })
 
-function showUploadMessage(text, color) {                      
-     const UppyInput = document.querySelector('.uppyinput')    
-                                                               
-     const paragraph = document.createElement("P");            
-     paragraph.className = 'UppyInputStatus';                  
-                                                               
-     const message = document.createTextNode(text);            
-     paragraph.appendChild(message);                           
-                                                               
-     paragraph.style.color = color;                            
-     paragraph.style.fontFamily = 'Proxima nova, sans-serif'   
-     paragraph.style.fontSize = '16px';                        
-                                                               
-     UppyInput.prepend(paragraph);                             
-}                                                              
+function showUploadMessage(text, color) {
+    const maybeParagraph = document.querySelector('.UppyInputStatus')
+    if (maybeParagraph === null) {
+        const UppyInput = document.querySelector('.uppyinput')
+
+        const paragraph = document.createElement("P");
+        paragraph.className = 'UppyInputStatus';
+
+        const message = document.createTextNode(text);
+        paragraph.appendChild(message);
+
+        paragraph.style.color = color;
+        paragraph.style.fontFamily = 'Proxima nova, sans-serif';
+        paragraph.style.fontSize = '16px';
+
+        UppyInput.prepend(paragraph);
+    }  else {
+        maybeParagraph.innerHTML = text;
+        maybeParagraph.style.color = color;
+    }
+}
+                                                    
 
 function validateFields() {
     let name = document.getElementById('Name') // validate
