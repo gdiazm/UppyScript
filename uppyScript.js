@@ -126,7 +126,7 @@ function validateFields() {
     let valid = true
     
     if (!email.value.length > 0) {
-        name.setCustomValidity("Input your email!");
+        email.setCustomValidity("Input your email!");
         valid = false;
     }
     if (email.validity.typeMismatch) {
