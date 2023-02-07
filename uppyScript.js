@@ -121,8 +121,8 @@ function showUploadMessage(text, color) {
 }                                                              
 
 function validateFields() {
-    let name = document.getElementById('Name') // validate
-    let email = document.getElementById('email') // validate
+    let name = document.getElementById('Name').value // validate
+    let email = document.getElementById('email').value // validate
     let valid = true
     if (email.validity.typeMismatch) {
         email.setCustomValidity("I am expecting an email address!");
