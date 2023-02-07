@@ -96,7 +96,19 @@ submitButton.addEventListener('click', () => {
 
 
 uppy.on('file-added', (file) => {
-   showUploadMessage("Your video has been uploaded successfully.", '#60B955');
+ const UppyInput = document.querySelector('.UppyInput')
+
+ const paragraph = document.createElement("P");
+ paragraph.className = 'UppyInputStatus';
+
+ const text = document.createTextNode("Your video has been uploaded successfully");
+ paragraph.appendChild(text);
+
+ paragraph.style.color = '#60B955';
+ paragraph.style.fontFamily = 'Proxima nova, sans-serif'
+ paragraph.style.fontSize = '16px';
+
+ UppyInput.prepend(paragraph);
 })
 
 uppy.on('upload-success', (file, response) => {
