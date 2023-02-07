@@ -146,6 +146,9 @@ function showSubmitMessage(text, color) {
    paragraph.style.color = color;
    paragraph.style.fontFamily = 'Proxima nova, sans-serif';
    paragraph.style.fontSize = '16px';
+   paragraph.style.paddingTop = '32px';
+   paragraph.style.paddingLeft = '8px';
+   paragraph.style.marginBottom = '-16px';
 
    UppyInputProgress.prepend(paragraph);
  } else {
