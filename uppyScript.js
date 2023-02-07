@@ -1,8 +1,9 @@
 import { Uppy, FileInput, StatusBar, AwsS3 } from "https://releases.transloadit.com/uppy/v3.3.1/uppy.min.mjs"
+const videoFileTypes = ['.mp4', '.mov', '.qt', '.m4v', '.mpg', '.mpeg', '.mp2', '.avi', '.3gp', '.3g2', '.mkv', '.webm', '.wmv']      
  const uppy = new Uppy({
     restrictions: {
         maxNumberOfFiles: 1,
-        allowedFileTypes: ['.mp4', '.mov', '.qt', '.m4v', '.mpg', '.mpeg', '.mp2', '.avi', '.3gp', '.3g2', '.mkv', '.webm', '.wmv']
+//         allowedFileTypes: ['.mp4', '.mov', '.qt', '.m4v', '.mpg', '.mpeg', '.mp2', '.avi', '.3gp', '.3g2', '.mkv', '.webm', '.wmv']
     }                                                                   
 })
 
