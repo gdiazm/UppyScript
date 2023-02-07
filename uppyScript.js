@@ -125,6 +125,15 @@ function validateFields() {
     let email = document.getElementById('email') // validate
     let valid = true
     
+    console.log(`Name: ${name.value}`)
+    console.log(`Email: ${email.value}`)
+    
+    if (!name.value.length > 0) {
+        name.setCustomValidity("Input your name!");
+        valid = false;
+    } else {
+        name.setCustomValidity("");
+    }
     if (!email.value.length > 0) {
         email.setCustomValidity("Input your email!");
         valid = false;
@@ -137,12 +146,7 @@ function validateFields() {
     } else {
         email.setCustomValidity("");
     }
-    if (!name.value.length > 0) {
-        name.setCustomValidity("Input your name!");
-        valid = false;
-    } else {
-        name.setCustomValidity("");
-    }
+
     return valid;
 }
 
