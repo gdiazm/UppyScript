@@ -1,5 +1,11 @@
 import { Uppy, FileInput, StatusBar, AwsS3 } from "https://releases.transloadit.com/uppy/v3.3.1/uppy.min.mjs"
-const uppy = new Uppy()
+ const uppy = new Uppy({
+    restrictions: {
+        maxNumberOfFiles: 1,
+        allowedFileTypes: ['.mp4', '.mov', '.qt', '.m4v', '.mpg', '.mpeg', '.mp2', '.avi', '.3gp', '.3g2', '.mkv', '.webm', '.wmv']
+    }
+})
+
     .use(FileInput, {
         target: '.uppyinput',
         locale: {
@@ -70,7 +76,7 @@ const uppy = new Uppy()
     });
 const submitButton = document.querySelector('.submit-button')
 submitButton.addEventListener('click', () => {
-    uppy.upload()
+    uppy.upload();
 })
 
 
@@ -84,13 +90,13 @@ uppy.on('file-added', (file) => {
     paragraph.appendChild(text);
 
     paragraph.style.color = '#60B955';
-    paragraph.style.fontFamily = 'Proxima nova, sans-serif'
+    paragraph.style.fontFamily = 'Proxima nova, sans-serif';
     paragraph.style.fontSize = '16px';
 
     UppyInput.prepend(paragraph);
 })
 
 uppy.on('upload-success', (file, response) => {
-    console.log('Video successfully uploaded. Logging event')
-    sendTrackingToNative({ "event": "video_uploaded", properties: {}})
+    sendTrackingToNative({ "event": "video_uploaded", properties: {}});
+    window.open("/submission-page");
 })
