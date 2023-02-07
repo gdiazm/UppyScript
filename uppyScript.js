@@ -97,6 +97,10 @@ uppy.on('file-added', (file) => {
      console.log(`is allowed extension: ${isAllowedExtension}`)
      if (isAllowedExtension) {
         showUploadMessage("Your video has been uploaded successfully.", '#60B955')
+        const maybeParagraph = document.querySelector('.UppyInputSubmitStatus')
+        if (maybeParagraph !== null) {
+          maybeParagraph.innerHTML = "";
+        }
      } else {
         uppy.removeFile(file.id)
         showUploadMessage("Upload unsuccessful (use .mp4 or .mov).", '#FF0000')
@@ -131,18 +135,24 @@ function showUploadMessage(text, color) {
 }
                                                     
 function showSubmitMessage(text, color) {
-  const UppyInputProgress = document.querySelector('.uppyinput-progress')
-  const paragraph = document.createElement("P");
-  paragraph.className = 'UppyInputSubmitStatus';
- 
-  const message = document.createTextNode(text);
-  paragraph.appendChild(message);
- 
-  paragraph.style.color = color;
-  paragraph.style.fontFamily = 'Proxima nova, sans-serif';
-  paragraph.style.fontSize = '16px';
+ const maybeParagraph = document.querySelector('.UppyInputSubmitStatus')
+ if (maybeParagraph === null) {
+   const UppyInputProgress = document.querySelector('.uppyinput-progress')
+   const paragraph = document.createElement("P");
+   paragraph.className = 'UppyInputSubmitStatus';
 
-  UppyInputProgress.prepend(paragraph);
+   const message = document.createTextNode(text);
+   paragraph.appendChild(message);
+
+   paragraph.style.color = color;
+   paragraph.style.fontFamily = 'Proxima nova, sans-serif';
+   paragraph.style.fontSize = '16px';
+
+   UppyInputProgress.prepend(paragraph);
+ } else {
+   maybeParagraph.innerHTML = text;
+   maybeParagraph.style.color = color;
+ }
 }
 
 
