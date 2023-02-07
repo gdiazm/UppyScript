@@ -96,7 +96,10 @@ submitButton.addEventListener('click', () => {
 
 
 uppy.on('file-added', (file) => {
- showUploadMessage("Your video has been uploaded successfully.", '#60B955')  
+  const extension = `.${currentFile.name.split('.').pop()}`;
+  console.log(`extension: ${extension}`)
+ 
+  showUploadMessage("Your video has been uploaded successfully.", '#60B955')  
 })
 
 uppy.on('upload-success', (file, response) => {
