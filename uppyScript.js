@@ -82,6 +82,7 @@ submitButton.addEventListener('click', () => {
     } else {
         if (uppy.getFiles().length < 1) {
           console.log('No files were found');
+          showSubmitMessage("Please upload a video", '#FF0000');
         } else {
           uppy.upload()
         }
@@ -129,6 +130,21 @@ function showUploadMessage(text, color) {
     }
 }
                                                     
+function showSubmitMessage(text, color) {
+  const UppyInputProgress = document.querySelector('.uppyinput-progress')
+  const paragraph = document.createElement("P");
+  paragraph.className = 'UppyInputSubmitStatus';
+ 
+  const message = document.createTextNode(text);
+  paragraph.appendChild(message);
+ 
+  paragraph.style.color = color;
+  paragraph.style.fontFamily = 'Proxima nova, sans-serif';
+  paragraph.style.fontSize = '16px';
+
+  UppyInputProgress.prepend(paragraph);
+}
+
 
 function validateFields() {
     let name = document.getElementById('Name') // validate
