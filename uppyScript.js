@@ -140,12 +140,12 @@ function validateFields() {
     } else {
         email.setCustomValidity("");
     }
-    if (email.validity.typeMismatch) {
-        email.setCustomValidity("I am expecting an email address!");
-        valid = false;
-    } else {
-        email.setCustomValidity("");
-    }
+//     if (email.validity.typeMismatch) {
+//         email.setCustomValidity("I am expecting an email address!");
+//         valid = false;
+//     } else {
+//         email.setCustomValidity("");
+//     }
 
     return valid;
 }
